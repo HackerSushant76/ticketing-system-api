@@ -3,6 +3,7 @@ const cors = require("cors")
 const { connection } = require("./Config/db")
 const { signupControl, loginControl } = require("./Controllers/user.controller")
 const { raiseTicketController, getTicketsController } = require("./Controllers/tickets.controller")
+const { addToBookmarksControl, getBookmarksControl } = require("./Controllers/bookmarks.controller")
 require("dotenv").config()
 const app = express()
 const PORT = process.env.PORT || 8080
@@ -19,6 +20,8 @@ app.post("/login", loginControl)
 app.post("/raiseticket" , raiseTicketController )
 app.get("/tickets" , getTicketsController)
 
+app.post("/addtobookmarks" , addToBookmarksControl)
+app.get("/bookmarks" , getBookmarksControl)
 app.listen(PORT,async()=>{
     try{
         await connection
